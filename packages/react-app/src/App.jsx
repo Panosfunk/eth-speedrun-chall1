@@ -546,24 +546,30 @@ function App(props) {
               <Button
                 type={"default"}
                 onClick={() => {
+                  console.log("Withdraw has started");
                   tx(writeContracts.Staker.withdraw());
+                  console.log("Did i wait?")
                 }}
               >
                 🏧 Withdraw
               </Button>
             </div>
 
-            <div style={{ padding: 8 }}>
-              <Button
+            <form target="_blank">
+              <p><input type="text" required name="amount" placeholder="Amount in Eth"></input></p>
+              <p>
+                <Button
                 type={balanceStaked ? "success" : "primary"}
                 onClick={() => {
-                  tx(writeContracts.Staker.stake({ value: ethers.utils.parseEther("0.5") }));
+                  let value = document.forms[0].elements["amount"].value;
+                  tx(writeContracts.Staker.stake({ value: ethers.utils.parseEther(value.toString()) }));
                 }}
-              >
-                🥩 Stake 0.5 ether!
-              </Button>
-            </div>
-
+                >                  
+                  Stake!
+                </Button>
+              </p>
+            </form>
+            
             {/*
                 🎛 this scaffolding is full of commonly used components
                 this <Contract/> component will automatically parse your ABI

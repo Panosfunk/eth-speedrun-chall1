@@ -80,7 +80,7 @@ export default function Faucet(props) {
               onClick={() => {
                 tx({
                   to: address,
-                  value: utils.parseEther("1.5"),
+                  value: utils.parseEther("150"),
                 });
                 setAddress("");
               }}
